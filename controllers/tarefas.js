@@ -9,8 +9,10 @@ module.exports = {
         } else {
             const email = req.session.email;
             const nomeList = req.params.nomeList;
-        await Tarefa.find({ email : email}, function(err, result){
+        await Tarefa.find({ nomeList : nomeList}, function(err, result){
+            console.log(result)
             res.render('tarefas', {result, nomeList : nomeList});
+            
         })
         }
     },
