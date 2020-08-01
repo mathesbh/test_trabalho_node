@@ -4,7 +4,9 @@ var router = express.Router();
 
 
 router.get('/', controllers.listas);
-router.post('/criarList', controllers.criarLista);
-router.delete('/deletarLista/:nomeList', controllers.removerLista);
+router.post('/criarLista', controllers.criarLista);
+router.get('/removerLista/:idLista', controllers.removerLista);
+router.get('/editarLista/:idLista', controllers.editarLista);
+router.get('/sair', controllers.sair);
 
 module.exports = router;

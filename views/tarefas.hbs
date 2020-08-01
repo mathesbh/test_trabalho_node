@@ -11,7 +11,7 @@
                 <a class="btn btn-light mr-2" href="/listas">Listas</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-light" href="/">Sair</a>
+                <a class="btn btn-light" href="/listas/sair">Sair</a>
             </li>
         </ul>
     </div>
@@ -21,29 +21,47 @@
     <div class="row">
         <div class="col-md-6">
             <div>
-                <h3>Tarefas {{nomeList}}</h3>                
+                <h3>Tarefas:</h3>                
             </div>
-            {{#each result}}
-                <div class="card mx-auto pt-2" style="width: 22rem;">
+            {{#each tarefas}}
+                <div class="card mx-auto pt-2 mt-1" style="width: 21rem;">
                     <div class="card-body">
-                        <h5 class="card-title">{{this.nomeTarefa}}</h5>
-                        <p class="card-text">{{this.descricaoTarefa}}</p>
-                        <a href="#" class="card-link">Remover</a>
+                        {{#if concluido}}
+                            <h5 class="card-title text-success"><del>{{this.nomeTarefa}}</del></h5>
+                        {{else}}
+                            <h5 class="card-title">{{this.nomeTarefa}}</h5>
+                        {{/if}}
+                        <form class="d-inline-flex" action="/tarefas/removerTarefa/{{idLista}}" method="POST">
+                            <input type="hidden" name="idTarefa" value="{{this._id}}">
+                            <button class="btn btn-danger">Remover</button>
+                        </form>
+
+                        <form class="d-inline-flex" action="/tarefas/concluirTarefa/{{idLista}}">
+                            <input type="hidden" name="idTarefa" value="{{this._id}}">
+                            <button class="btn btn-success">Concluir</button>
+                        </form>
+
+                        <form class="d-inline-flex" action="/tarefas/desmarcarTarefa/{{idLista}}">
+                            <input type="hidden" name="idTarefa" value="{{this._id}}">
+                            <button class="btn btn-warning text-light">Desmarcar</button>
+                        </form>
+
+                        <form class="mt-2" action="/tarefas/editarTarefa/{{idLista}}">
+                            <input type="hidden" name="idTarefa" value="{{this._id}}">
+                            <input type="text" name="nomeTarefa" style="width: 13.7em;">
+                            <button class="btn btn-secondary">Editar</button>
+                        </form>
+                       
                     </div>
                 </div>
             {{/each}}
         </div>
         <div class="col-md-6">
             <div>
-                <form class="mx-auto pt-4" action="/tarefas/{{nomeList}}" method="POST" style="width: 18rem;">
-                    <h6>Criar tarefa</h6>
+                <form class="mx-auto pt-4" action="/tarefas/criarTarefa/{{idLista}}" method="POST" style="width: 18rem;">
+                    <h5>Criar tarefa</h5>
                     <div class="form-group">
-                        <label for="nomeTarefa">Nome da tarefa:</label>
-                        <input type="text" class="form-control" id="nomeTarefa" name="nomeTarefa">
-                    </div>
-                    <div class="form-group">
-                        <label for="descricaoTarefa">Descrição da tarefa:</label>
-                        <input type="text" class="form-control" id="descricaoTarefa" name="descricaoTarefa">
+                        <input type="text" class="form-control" name="nomeTarefa" placeholder="Tarefa">
                     </div>
                     <button type="submit" class="btn btn-primary">Criar tarefa</button>
                 </form>

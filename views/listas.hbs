@@ -8,7 +8,7 @@
         </a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="btn btn-light" href="/">Sair</a>
+                <a class="btn btn-light" href="/listas/sair">Sair</a>
             </li>
         </ul>
     </div>
@@ -18,30 +18,30 @@
     <div class="row">
         <div class="col-md-8">
             <div>
-                <h3>Listas para tarefas:</h3>                
+                <h3>Listas:</h3>                
             </div>
-            {{#each result}}
-                <div class="card mx-auto pt-2" style="width: 22rem;">
+            {{#each listas}}
+                <div class="card mx-auto pt-2 mt-1" style="width: 18.5rem;">
                     <div class="card-body">
-                        <h5 class="card-title">{{this.nomeList}}</h5>
-                        <p class="card-text">{{this.descricaoList}}</p>
-                        <a href="/tarefas/{{this.nomeList}}" class="card-link">Acessar lista</a>
-                        <a href="/listas/deletarLista/{{this.nomeList}}" class="card-link">Remover</a>
+                        <h5 class="card-title">{{this.nomeLista}}</h5>
+                        <a href="/tarefas/{{this._id}}" class="btn btn-primary">Tarefas</a>
+                        <a href="/listas/removerLista/{{this._id}}" class="btn btn-danger">Remover</a>
+                        <form class="mt-2" action="/listas/editarLista/{{this._id}}">
+                            <input type="text" name="nomeLista" placeholder="Editar Lista" style="width: 11em;">
+                            <button class="btn btn-secondary">Editar</button>
+                        </form>
+
+
                     </div>
                 </div>
             {{/each}}
         </div>
         <div class="col-md-4">
             <div>
-                <form class="mx-auto pt-4" action="/listas/criarList" method="POST" style="width: 18rem;">
-                    <h6>Criar lista</h6>
+                <form class="mx-auto pt-4" action="/listas/criarLista" method="POST" style="width: 18rem;">
+                    <h5>Criar lista:</h5>
                     <div class="form-group">
-                        <label for="nomeList">Nome da lista:</label>
-                        <input type="text" class="form-control" id="nomeList" name="nomeList">
-                    </div>
-                    <div class="form-group">
-                        <label for="descricaoList">Descrição da lista:</label>
-                        <input type="text" class="form-control" id="descricaoList" name="descricaoList">
+                        <input type="text" class="form-control" name="nomeLista" placeholder="Nome da lista">
                     </div>
                     <button type="submit" class="btn btn-primary">Criar lista</button>
                 </form>

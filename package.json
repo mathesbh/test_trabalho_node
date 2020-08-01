@@ -1,9 +1,9 @@
 {
   "name": "trabalho-final",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/nodemon ./bin/www"
+    "start": "nodemon ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -17,5 +17,17 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
-  }
+  },
+  "description": "app lista de afazeres",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mathesbh/test_trabalho_node.git"
+  },
+  "author": "Matheus Salomão",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mathesbh/test_trabalho_node/issues"
+  },
+  "homepage": "https://github.com/mathesbh/test_trabalho_node#readme"
 }
